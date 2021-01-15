@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset = "UTF-8"/>
+    </head>
+
+    <body>
+
+        <div th:each = "conta : ${contas}">
+            <label>Nome do Cliente:</label>
+            <div th:text = "${conta.getCliente().getNome()}"></div>
+
+            <label>Agência:</label>
+            <div th:text = "${conta.agencia}"></div>
+
+            <label>Número da conta:</label>
+            <div th:text = "${conta.numeroConta}"></div>
+
+            <label>Saldo:</label>
+            <div th:text = "${conta.saldo}"></div>
+        </div>
+
+        <div>
+            <a href = "/caixa/saque"><button>Sacar</button></a>
+        </div>
+
+        <div>
+            <a href = "/caixa/deposito"><button>Depositar</button></a>
+        </div>
+
+    </body>
+
+</html>
