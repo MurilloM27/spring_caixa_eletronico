@@ -24,4 +24,13 @@ public class ContaServico {
         Optional<Conta> filtro = repository.findById(id);
         return filtro.get();
     }
+
+	public void saveConta(Conta conta) {
+        repository.save(conta);
+    }
+    
+    public Conta findByAgenciaENumeroConta(String agencia, String numeroConta){
+        Conta conta = repository.findByAgenciaAndNumeroConta(agencia, numeroConta);
+        return conta;
+    }
 }

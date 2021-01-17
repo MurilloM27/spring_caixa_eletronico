@@ -4,13 +4,19 @@
     </head>
 
     <body>
-        <label>Digite o valor a ser sacado:</label>
-        <input>
+        <form action="/caixa/resultadoSaque" method="POST">
+            <label>Digite o número da agência:</label>
+            <input type="text" name="agencia">
 
-        <div>
-            <button>Sacar</button>
-        </div>
+            <label>Digite o número da Conta:</label>
+            <input type="text" name="numeroConta">
 
+            <label>Digite o valor a ser sacado:</label>
+            <input type = "text" name="valor">
+
+            <div>
+                <button type = "submit">Sacar</button>
+            </div>
+        </form>
     </body>
-
 </html>

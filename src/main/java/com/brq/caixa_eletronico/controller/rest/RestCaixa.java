@@ -1,10 +1,9 @@
 package com.brq.caixa_eletronico.controller.rest;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.brq.caixa_eletronico.modelo.Conta;
-import com.brq.caixa_eletronico.repositorios.ContaRepository;
+import com.brq.caixa_eletronico.servico.ContaServico;
 import com.brq.caixa_eletronico.servico.TransacaoServico;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,43 +15,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/clientes")
+@RequestMapping(value = "/contas")
 public class RestCaixa {
     
     @Autowired
-    private ContaRepository repository;
+    private ContaServico contaServico;
 
     @Autowired
     private TransacaoServico transacaoServico;
 
     @GetMapping
     public ResponseEntity<List<Conta>> listarAll(){
-        List<Conta> contas = repository.findAll();
+        List<Conta> contas = contaServico.findAllContas();
         return ResponseEntity.ok().body(contas);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Conta> listarPorId(@PathVariable Long id){
-        Optional<Conta> conta = repository.findById(id);
-        return ResponseEntity.ok().body(conta.get());
+        Conta conta = contaServico.findContaById(id);
+        return ResponseEntity.ok().body(conta);
     }
 
     @PostMapping(value = "/deposito/{id}/{valor}")
-    public ResponseEntity<Conta> deposito(@PathVariable Long id, @PathVariable Double valor){
-        Optional<Conta> filtro = repository.findById(id);
-        Conta conta = filtro.get();
-        transacaoServico.depositar(conta.getId(), valor);
-        repository.save(conta);
-        return ResponseEntity.ok().body(conta);
+    public ResponseEntity<String> deposito(@PathVariable Long id, @PathVariable Double valor){
+        Conta conta = contaServico.findContaById(id);
+        return ResponseEntity.ok().body(transacaoServico.depositar(conta.getId(), valor));
     }
 
     @PostMapping(value = "/saque/{id}/{valor}")
     public ResponseEntity<String> saque(@PathVariable Long id, @PathVariable Double valor){
-        Optional<Conta> filtro = repository.findById(id);
-        Conta conta = filtro.get();
-        transacaoServico.sacarQuantia(conta.getId(), valor);
-        repository.save(conta);
-        return ResponseEntity.ok().body(transacaoServico.quantidadeNotas(valor));
+        Conta conta = contaServico.findContaById(id);
+        return ResponseEntity.ok().body(transacaoServico.sacarQuantia(conta.getId(), valor));
     }
 
 }

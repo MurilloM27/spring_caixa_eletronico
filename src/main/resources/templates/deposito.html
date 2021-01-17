@@ -4,12 +4,21 @@
     </head>
 
     <body>
-        <label>Digite o valor a ser depositado:</label>
-        <input>
+        <form action="/caixa/resultadoDeposito" method="POST">
+            <label>Digite o número da agência:</label>
+            <input type="text" name="agencia">
 
-        <div>
-            <button>Depositar</button>
-        </div>
+            <label>Digite o número da Conta:</label>
+            <input type="text" name="numeroConta">
+
+            <label>Digite o valor a ser depositado:</label>
+            <input type = "text" name="valor">
+
+            <div>
+                <button type = "submit">Depositar</button>
+            </div>
+        </form>
+
 
     </body>
 
