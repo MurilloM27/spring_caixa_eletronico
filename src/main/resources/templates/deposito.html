@@ -1,25 +1,34 @@
 <html>
-    <head>
-        <meta charset = "UTF-8"/>
-    </head>
+
+<head th:replace = "~{base :: head}"></head>
 
     <body>
-        <form action="/caixa/resultadoDeposito" method="POST">
-            <label>Digite o número da agência:</label>
-            <input type="text" name="agencia">
 
-            <label>Digite o número da Conta:</label>
-            <input type="text" name="numeroConta">
+        <div th:replace = "~{nav :: bar}"></div>
 
-            <label>Digite o valor a ser depositado:</label>
-            <input type = "text" name="valor">
+        <div class="container">
+            <div class="card">
+                <form class = "card-body" action="/caixa/resultadoDeposito" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Digite o número da agência:</label>
+                        <input type="text" class="form-control" name = "agencia">
+                    </div>
 
-            <div>
-                <button type = "submit">Depositar</button>
+                    <div class="mb-3">
+                        <label class="form-label">Digite o número da conta:</label>
+                        <input type="text" class="form-control" name = "numeroConta">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Digite o valor a ser depositado:</label>
+                        <input type="text" class="form-control" name = "valor">
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-secondary">Depositar</button>
+                    </div>
+                </form>
             </div>
-        </form>
-
-
     </body>
-
+    
 </html>

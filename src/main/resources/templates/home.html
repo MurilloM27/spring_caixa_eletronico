@@ -1,32 +1,54 @@
 <html>
-    <head>
-        <meta charset = "UTF-8"/>
-    </head>
+
+<head th:replace = "~{base :: head}"></head>
 
     <body>
 
-        <div th:each = "conta : ${contas}">
-            <label>Nome do Cliente:</label>
-            <div th:text = "${conta.getCliente().getNome()}"></div>
-
-            <label>Agência:</label>
-            <div th:text = "${conta.agencia}"></div>
-
-            <label>Número da conta:</label>
-            <div th:text = "${conta.numeroConta}"></div>
-
-            <label>Saldo:</label>
-            <div th:text = "${conta.saldo}"></div>
+        <div class="nav mb-3">
+            <span class = "logo">ByteBank</span>
         </div>
 
-        <div>
-            <a href = "/caixa/saque"><button>Sacar</button></a>
-        </div>
+        <div class = "container">
 
-        <div>
-            <a href = "/caixa/deposito"><button>Depositar</button></a>
-        </div>
+            <h2 class = "text-center mb-3">Seja Bem-Vindo!</h2>
+            
+            <div class = "card mb-3" th:each = "conta : ${contas}">
+               
+                <div class = "card-header">Cliente</div>
 
+                    <div class = "card-body">
+                        <div class = "row">
+                            <div class = "col-6">Nome: <span class = "card-text" th:text = "${conta.getCliente().getNome()}"></span></div>
+
+                            <div class = "col-6">Agência: <span class = "card-text" th:text = "${conta.agencia}"></span></div>
+                        </div>
+
+                        <div class = "row">
+                            <div class = "col-6">Número da Conta: <span  class = "card-text" th:text = "${conta.numeroConta}"></span></div>
+                
+                            <div class = "col-6">Saldo: R$ <span  class = "card-text" th:text = "${conta.saldo}"></span></div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        <div class = "container">
+            <div class = "card">
+                <div class = "card-header text-center">Qual operação deseja realizar?</div>
+                    <div class = "card-body">
+                        <div class = "row">
+                            <div class = "col-6 text-center">
+                                <a href = "/caixa/saque"><button class="btn btn-dark">Saque</button></a>
+                            </div>
+
+                            <div class = "col-6 text-center">
+                                <a href = "/caixa/deposito"><button class="btn btn-dark">Depósito</button></a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
     </body>
 
 </html>

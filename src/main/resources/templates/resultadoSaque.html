@@ -1,15 +1,26 @@
 <html>
-    <head>
-        <meta charset="UTF-8"/>
-    </head>
+
+<head th:replace = "~{base :: head}"></head>
 
     <body>
-        <h2>Operação realizada com sucesso!</h2>
 
-        <label>Seu novo saldo é de:</label>
-        <p th:text = "${saldo}"></p>
+        <div th:replace = "~{nav :: bar}"></div>
+        
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center mb-3">Operação realizada com sucesso!</h1>
 
-        <p th:utext = "${notas}"></p>
+                    <h3 class = "text-center mb-3">Seu novo saldo é de: R$ <span th:text = "${saldo}"></span></h3>
+
+                    <h3 class = "text-center mb-3" th:text = "${notas}"></h3>
+
+                    <div class= "text-center">
+                        <a href="/home"><button class = "btn btn-dark">Retornar para a home</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 
 </html>

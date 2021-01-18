@@ -126,10 +126,10 @@ public class TransacaoServico {
             throw new IllegalArgumentException("Valor inválido, tente novamente.");
         }
 
-        return "Notas de 100: " + Integer.toString(notasCem) 
-        + " Notas de 50: " + Integer.toString(notasCinq) 
-        + " Notas de 20: " + Integer.toString(notasVinte)
-        + " Notas de 10: " + Integer.toString(notasDez);
+        return "[Notas de 100: " + Integer.toString(notasCem) + "], " 
+        + " [Notas de 50: " + Integer.toString(notasCinq) + "], " 
+        + " [Notas de 20: " + Integer.toString(notasVinte) + "], "
+        + " [Notas de 10: " + Integer.toString(notasDez) + "]";
     }
 
 }
