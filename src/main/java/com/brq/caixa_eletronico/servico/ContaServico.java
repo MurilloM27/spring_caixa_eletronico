@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.brq.caixa_eletronico.modelo.Conta;
 import com.brq.caixa_eletronico.repositorios.ContaRepository;
+import com.brq.caixa_eletronico.servico.excecoes.ContaNaoEncontradaException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,7 +31,10 @@ public class ContaServico {
     }
     
     public Conta findByAgenciaENumeroConta(String agencia, String numeroConta){
-        Conta conta = repository.findByAgenciaAndNumeroConta(agencia, numeroConta);
-        return conta;
+       Conta conta = repository.findByAgenciaAndNumeroConta(agencia, numeroConta);
+       if(conta == null){
+           throw new ContaNaoEncontradaException(agencia, numeroConta);
+       } 
+       return conta;
     }
 }

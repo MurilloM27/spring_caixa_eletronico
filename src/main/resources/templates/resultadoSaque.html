@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h1 class="text-center mb-3">Operação realizada com sucesso!</h1>
 
-                    <h3 class = "text-center mb-3">Seu novo saldo é de: R$ <span th:text = "${saldo}"></span></h3>
+                    <h3 class = "text-center mb-3">Seu novo saldo é de: <span th:text = "${#numbers.formatCurrency(saldo)}"></span></h3>
 
                     <h3 class = "text-center mb-3" th:text = "${notas}"></h3>
 

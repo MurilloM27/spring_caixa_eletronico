@@ -2,6 +2,8 @@ package com.brq.caixa_eletronico.servico;
 
 import com.brq.caixa_eletronico.modelo.Caixa;
 import com.brq.caixa_eletronico.modelo.Conta;
+import com.brq.caixa_eletronico.servico.excecoes.SaldoInsuficienteException;
+import com.brq.caixa_eletronico.servico.excecoes.ValorInvalidoException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +23,7 @@ public class TransacaoServico {
         Conta conta = contaServico.findContaById(id);
 
         if(valor < 0){
-            throw new IllegalArgumentException("Valor inválido para saque, tente novamente.");
+            throw new ValorInvalidoException();
         }
 
         int notasCem = 0;
@@ -62,7 +64,7 @@ public class TransacaoServico {
                 }
             }
         } else {
-            throw new IllegalArgumentException("Saldo insuficiente para realizar a operação;");
+            throw new SaldoInsuficienteException();
         }
 
         contaServico.saveConta(conta);
@@ -83,7 +85,7 @@ public class TransacaoServico {
         if(valor > 0){
            conta.deposita(valor);
         } else {
-            throw new IllegalArgumentException("Valor inválido, tente novamente");
+            throw new ValorInvalidoException();
         }
 
         contaServico.saveConta(conta);
@@ -123,7 +125,7 @@ public class TransacaoServico {
                 }
             }
         } else {
-            throw new IllegalArgumentException("Valor inválido, tente novamente.");
+            throw new ValorInvalidoException();
         }
 
         return "[Notas de 100: " + Integer.toString(notasCem) + "], " 
