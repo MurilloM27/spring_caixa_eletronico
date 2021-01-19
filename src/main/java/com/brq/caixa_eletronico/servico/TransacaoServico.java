@@ -2,6 +2,7 @@ package com.brq.caixa_eletronico.servico;
 
 import com.brq.caixa_eletronico.modelo.Caixa;
 import com.brq.caixa_eletronico.modelo.Conta;
+import com.brq.caixa_eletronico.servico.excecoes.NotasIndisponiveisException;
 import com.brq.caixa_eletronico.servico.excecoes.SaldoInsuficienteException;
 import com.brq.caixa_eletronico.servico.excecoes.ValorInvalidoException;
 
@@ -32,6 +33,8 @@ public class TransacaoServico {
         int notasDez = 0;
 
         Caixa caixa = caixaServico.findCaixa();
+
+        verificaValorSaque(valor);
 
         if(valor <= conta.getSaldo()) { 
             
@@ -132,6 +135,15 @@ public class TransacaoServico {
         + " [Notas de 50: " + Integer.toString(notasCinq) + "], " 
         + " [Notas de 20: " + Integer.toString(notasVinte) + "], "
         + " [Notas de 10: " + Integer.toString(notasDez) + "]";
+    }
+
+    public boolean verificaValorSaque(Double valor){
+
+        if(caixaServico.somatoriaValorCaixa() >= valor){
+            return true;
+        }
+
+        throw new NotasIndisponiveisException();
     }
 
 }

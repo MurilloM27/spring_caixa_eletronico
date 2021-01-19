@@ -45,8 +45,7 @@ public class TestConfig implements CommandLineRunner {
         Conta conta1 = new Conta(null, cliente1, "1111", "123456", 200.0, usuario1);
         Conta conta2 = new Conta(null, cliente2, "2222", "654321", 300.0, usuario2);
 
-        Caixa caixa = new Caixa(null, 100, 100, 100, 100);
-
+        Caixa caixa = new Caixa(null, 10, 10, 10, 10);
 
         clienteRepository.saveAll(Arrays.asList(cliente1, cliente2));
 

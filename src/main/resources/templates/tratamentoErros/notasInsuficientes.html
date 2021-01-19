@@ -1,0 +1,18 @@
+<html>
+    <head th:replace = "~{base :: head}"></head>
+
+    <body>
+        <div th:replace = "~{nav :: bar}"></div>
+        
+        <h2 class = "text-center mb-3" th:text = "${erro.erro}"></h2>
+        
+        <div class = "text-center mb-3">
+            <span th:text = "${#dates.format(erro.timeStamp, 'dd/MMM/yyyy HH:mm')}"></span>
+        </div>
+
+        <div class = "text-center">
+            <a href="/home"><button class = "btn btn-dark">Voltar</button></a>
+        </div>
+    </body>
+
+</html>

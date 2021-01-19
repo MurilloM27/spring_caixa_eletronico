@@ -22,4 +22,13 @@ public class CaixaServico {
     public void atualizarCaixa(Caixa caixa){
         repository.save(caixa);
     }
+
+    public Double somatoriaValorCaixa(){
+        List<Caixa> filtro = repository.findAll();
+        Caixa caixa = filtro.get(0);
+
+        double valorNoCaixa = (caixa.getNotasCem() * 100 + caixa.getNotasCinq() *50 + caixa.getNotasVinte() * 20 + caixa.getNotasDez() *10);
+        
+        return valorNoCaixa;
+    }
 }

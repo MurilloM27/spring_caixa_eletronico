@@ -5,6 +5,7 @@ import java.time.Instant;
 import javax.servlet.http.HttpServletRequest;
 
 import com.brq.caixa_eletronico.servico.excecoes.ContaNaoEncontradaException;
+import com.brq.caixa_eletronico.servico.excecoes.NotasIndisponiveisException;
 import com.brq.caixa_eletronico.servico.excecoes.SaldoInsuficienteException;
 import com.brq.caixa_eletronico.servico.excecoes.ValorInvalidoException;
 
@@ -41,6 +42,15 @@ public class ResourceExceptionHandler {
         ErroPadrao erroPadrao = new ErroPadrao(Instant.now(), status, erro, e.getMessage(), request.getRequestURI());
         model.addAttribute("erro", erroPadrao);
         return "tratamentoErros/saldoInsuficiente";
+    }
+
+    @ExceptionHandler(NotasIndisponiveisException.class)
+    public String valorInsuficienteParaSaque(NotasIndisponiveisException e, HttpServletRequest request, Model model){
+        String erro = "Não há notas suficientes para realizar o saque do valor desejado, tente novamente mais tarde.";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErroPadrao erroPadrao = new ErroPadrao(Instant.now(), status, erro, e.getMessage(), request.getRequestURI());
+        model.addAttribute("erro", erroPadrao);
+        return "tratamentoErros/notasInsuficientes";
     }
 
 }
