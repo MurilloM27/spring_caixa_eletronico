@@ -37,4 +37,13 @@ public class ContaServico {
        } 
        return conta;
     }
+
+    public Conta findByUsuario(String username){
+        Conta conta = repository.findByUser(username);
+        if(conta == null){
+            throw new NullPointerException();
+        }
+
+        return conta;
+    }
 }

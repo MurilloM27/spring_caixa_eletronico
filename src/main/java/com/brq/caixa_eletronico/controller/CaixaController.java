@@ -1,5 +1,7 @@
 package com.brq.caixa_eletronico.controller;
 
+import java.security.Principal;
+
 import com.brq.caixa_eletronico.modelo.Conta;
 import com.brq.caixa_eletronico.servico.ContaServico;
 import com.brq.caixa_eletronico.servico.TransacaoServico;
@@ -27,8 +29,8 @@ public class CaixaController {
     }
 
     @PostMapping("/resultadoSaque")
-    public String realizarSaque(String agencia, String numeroConta, Double valor, Model model){
-        Conta conta = contaServico.findByAgenciaENumeroConta(agencia, numeroConta);
+    public String realizarSaque(Double valor, Model model, Principal principal){
+        Conta conta = contaServico.findByUsuario(principal.getName());
         transacao.sacarQuantia(conta.getId(), valor);
         model.addAttribute("saldo", conta.getSaldo());
         model.addAttribute("notas", transacao.retornarNotas(valor));

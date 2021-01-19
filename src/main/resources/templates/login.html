@@ -1,10 +1,15 @@
 <html>
     <head th:replace = "~{base :: head}"></head>
 
-    <div th:replace = "~{nav :: bar}"></div>
+    <div class = "nav mb-3">
+        <span class = "logo mt-2">ByteBank</span>
+    </div>
 
     <div class="container">
         <div class="card">
+
+            <h3 class = "text-center">Bem vindo! Entre com suas credenciais:</h3>
+
             <form class = "card-body" th:action = "@{/login}" method="POST">
 
                 <div class="mb-3">
