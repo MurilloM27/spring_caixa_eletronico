@@ -1,0 +1,28 @@
+<html>
+    <head th:replace = "~{base :: head}"></head>
+
+    <div th:replace = "~{nav :: bar}"></div>
+
+    <div class="container">
+        <div class="card">
+            <form class = "card-body" th:action = "@{/login}" method="POST">
+
+                <div class="mb-3">
+                    <label class="form-label">Digite o número da conta:</label>
+                    <input type="text" class="form-control" name = "username" placeholder="Numero da Conta">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Digite a senha:</label>
+                    <input type="password" class="form-control" name = "password" placeholder="Senha">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-dark">Login</button>
+                </div>
+            </form>
+        </div>
+
+
+
+</html>

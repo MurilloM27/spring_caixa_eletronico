@@ -1,6 +1,6 @@
 package com.brq.caixa_eletronico.controller;
 
-import java.util.List;
+import java.security.Principal;
 
 import com.brq.caixa_eletronico.modelo.Conta;
 import com.brq.caixa_eletronico.repositorios.ContaRepository;
@@ -17,9 +17,9 @@ public class HomeController {
     private ContaRepository contaRepository;
 
     @GetMapping(value = "/home")
-    public String home(Model model){
-        List<Conta> contas = contaRepository.findAll();
-        model.addAttribute("contas", contas);
+    public String home(Model model, Principal principal){
+        Conta conta = contaRepository.findByUser(principal.getName());
+        model.addAttribute("conta", conta);
         return "home";
     }
 }

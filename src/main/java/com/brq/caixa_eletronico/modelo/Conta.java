@@ -19,15 +19,19 @@ public class Conta {
     
     @OneToOne
     private Cliente cliente;
+
+    @OneToOne
+    private Usuario user;
   
     public Conta(){}
 
-    public Conta(Long id, Cliente cliente, String agencia, String numeroConta, Double saldo) {
+    public Conta(Long id, Cliente cliente, String agencia, String numeroConta, Double saldo, Usuario usuario) {
         this.id = id;
         this.cliente = cliente;
         this.agencia = agencia;
         this.numeroConta = numeroConta;
         this.saldo = saldo;
+        this.user = usuario;
     }
 
     public Long getId() {
@@ -62,6 +66,14 @@ public class Conta {
         this.numeroConta = numeroConta;
     }
 
+    public Usuario getUser() {
+        return this.user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+    
     public Double getSaldo() {
         return this.saldo;
     }
@@ -73,5 +85,11 @@ public class Conta {
     public Double sacar(Double valor){
         return this.saldo -= valor;
     }
+
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
+    }
+
+
 
 }
