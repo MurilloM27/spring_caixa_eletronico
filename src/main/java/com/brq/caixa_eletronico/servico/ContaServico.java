@@ -43,7 +43,6 @@ public class ContaServico {
         if(conta == null){
             throw new NullPointerException();
         }
-
         return conta;
     }
 }

@@ -1,0 +1,38 @@
+<html>
+
+<head th:replace = "~{base :: head}"></head>
+
+    <body>
+
+        <div th:replace = "~{nav :: bar}"></div>
+
+        <div class="container">
+
+            <h2 class = "text-center mb-3">Notas à acrescentar:</h2>
+            <div class = "row mb-3">
+                <div class = "col-3 text-center">R$ 100,00</div>
+                <div class = "col-3 text-center">R$ 50,00</div>
+                <div class = "col-3 text-center">R$ 20,00</div>
+                <div class = "col-3 text-center">R$ 10,00</div>
+            </div>
+
+            <div class="card">
+                <form class = "card-body" action="/notas/resultadoNotas" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Digite o tipo de nota a ser adicionada:</label>
+                        <input type="text" class="form-control" name = "tipoNota">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Digite a quantidade a ser acrescentada:</label>
+                        <input type="text" class="form-control" name = "quantidade">
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-dark">Acrescentar</button>
+                    </div>
+                </form>
+            </div>
+    </body>
+    
+</html>

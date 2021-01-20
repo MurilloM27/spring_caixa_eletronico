@@ -5,6 +5,7 @@ import java.time.Instant;
 import javax.servlet.http.HttpServletRequest;
 
 import com.brq.caixa_eletronico.servico.excecoes.ContaNaoEncontradaException;
+import com.brq.caixa_eletronico.servico.excecoes.LimiteNotasCaixaException;
 import com.brq.caixa_eletronico.servico.excecoes.NotasIndisponiveisException;
 import com.brq.caixa_eletronico.servico.excecoes.SaldoInsuficienteException;
 import com.brq.caixa_eletronico.servico.excecoes.ValorInvalidoException;
@@ -51,6 +52,15 @@ public class ResourceExceptionHandler {
         ErroPadrao erroPadrao = new ErroPadrao(Instant.now(), status, erro, e.getMessage(), request.getRequestURI());
         model.addAttribute("erro", erroPadrao);
         return "tratamentoErros/notasInsuficientes";
+    }
+
+    @ExceptionHandler(LimiteNotasCaixaException.class)
+    public String limiteNotasCaixa(LimiteNotasCaixaException e, HttpServletRequest request, Model model){
+        String erro = "O limite de notas no caixa foi ultrapassado, não é possível realizar a operação.";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErroPadrao erroPadrao = new ErroPadrao(Instant.now(), status, erro, e.getMessage(), request.getRequestURI());
+        model.addAttribute("erro", erroPadrao);
+        return "tratamentoErros/limiteCaixa";
     }
 
 }

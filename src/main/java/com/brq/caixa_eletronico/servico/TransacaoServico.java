@@ -142,7 +142,6 @@ public class TransacaoServico {
         if(caixaServico.somatoriaValorCaixa() >= valor){
             return true;
         }
-
         throw new NotasIndisponiveisException();
     }
 

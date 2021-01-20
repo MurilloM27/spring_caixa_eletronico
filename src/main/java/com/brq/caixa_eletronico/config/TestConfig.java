@@ -5,10 +5,12 @@ import java.util.Arrays;
 import com.brq.caixa_eletronico.modelo.Caixa;
 import com.brq.caixa_eletronico.modelo.Cliente;
 import com.brq.caixa_eletronico.modelo.Conta;
+import com.brq.caixa_eletronico.modelo.PerfilAcesso;
 import com.brq.caixa_eletronico.modelo.Usuario;
 import com.brq.caixa_eletronico.repositorios.CaixaRepository;
 import com.brq.caixa_eletronico.repositorios.ClienteRepository;
 import com.brq.caixa_eletronico.repositorios.ContaRepository;
+import com.brq.caixa_eletronico.repositorios.PerfilAcessoRepository;
 import com.brq.caixa_eletronico.repositorios.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private PerfilAcessoRepository perfilRepository;
+
     @Override
     public void run(String... args) throws Exception {
       
@@ -47,6 +52,9 @@ public class TestConfig implements CommandLineRunner {
 
         Caixa caixa = new Caixa(null, 10, 10, 10, 10);
 
+        PerfilAcesso perfilAcesso1 = new PerfilAcesso(null, "ROLE_CLIENTE");
+        PerfilAcesso perfilAcesso2 = new PerfilAcesso(null, "ROLE_ADM");
+
         clienteRepository.saveAll(Arrays.asList(cliente1, cliente2));
 
         usuarioRepository.saveAll(Arrays.asList(usuario1, usuario2));
@@ -54,6 +62,8 @@ public class TestConfig implements CommandLineRunner {
         contaRepository.saveAll(Arrays.asList(conta1, conta2));
 
         caixaRepository.save(caixa);
+
+        perfilRepository.saveAll(Arrays.asList(perfilAcesso1, perfilAcesso2));
 
 
     }

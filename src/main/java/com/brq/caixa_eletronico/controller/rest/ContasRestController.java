@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/contas")
-public class RestCaixa {
+public class ContasRestController {
     
     @Autowired
     private ContaServico contaServico;
