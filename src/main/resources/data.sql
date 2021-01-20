@@ -1,4 +1,4 @@
-INSERT INTO TB_CAIXA_ELETRONICO(notas_cem, notas_cinq, notas_dez, notas_vinte) VALUES (0, 0, 0, 0);
+INSERT INTO TB_CAIXA_ELETRONICO(notas_cem, notas_cinq, notas_dez, notas_vinte) VALUES (10, 10, 10, 10);
 
 INSERT INTO TB_CLIENTE(nome) VALUES ('João Silva');
 INSERT INTO TB_CLIENTE(nome) VALUES ('Maria Aparecida');

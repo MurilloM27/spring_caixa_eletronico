@@ -39,13 +39,13 @@ public class ContasRestController {
     @PostMapping(value = "/deposito/{id}/{valor}")
     public ResponseEntity<String> deposito(@PathVariable Long id, @PathVariable Double valor){
         Conta conta = contaServico.findContaById(id);
-        return ResponseEntity.ok().body(transacaoServico.depositar(conta.getId(), valor));
+        return ResponseEntity.ok().body(transacaoServico.depositar(conta.getId(), valor).toString());
     }
 
     @PostMapping(value = "/saque/{id}/{valor}")
     public ResponseEntity<String> saque(@PathVariable Long id, @PathVariable Double valor){
         Conta conta = contaServico.findContaById(id);
-        return ResponseEntity.ok().body(transacaoServico.sacarQuantia(conta.getId(), valor));
+        return ResponseEntity.ok().body(transacaoServico.sacarQuantia(conta.getId(), valor).toString());
     }
 
 }

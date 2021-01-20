@@ -19,7 +19,7 @@ public class TransacaoServico {
     private ContaServico contaServico;
 
     // Tem que pegar pelo ID, e selecionar o cliente
-    public String sacarQuantia(Long id, Double valor){
+    public Double sacarQuantia(Long id, Double valor){
         
         Conta conta = contaServico.findContaById(id);
 
@@ -75,15 +75,11 @@ public class TransacaoServico {
         contaServico.saveConta(conta);
         caixaServico.atualizarCaixa(caixa);
 
-        return  "Seu novo saldo é de: " + conta.getSaldo() 
-        + "\nNotas de 100: " + Integer.toString(notasCem) 
-        + " Notas de 50: " + Integer.toString(notasCinq) 
-        + " Notas de 20: " + Integer.toString(notasVinte)
-        + " Notas de 10: " + Integer.toString(notasDez);
+        return conta.getSaldo(); 
     }
 		
     // Pegar pelo ID
-    public String depositar(Long id, Double valor){
+    public Double depositar(Long id, Double valor){
         
         Conta conta = contaServico.findContaById(id);
 
@@ -95,7 +91,7 @@ public class TransacaoServico {
 
         contaServico.saveConta(conta);
 
-        return "Seu novo saldo é de: " + conta.getSaldo();
+        return conta.getSaldo();
     }
 
     public String retornarNotas(Double valor){
