@@ -16,7 +16,7 @@
                 <div class = "col-3 text-center">R$ 10,00</div>
             </div>
 
-            <div class="card">
+            <div class="card mb-3">
                 <form class = "card-body" action="/notas/resultadoNotas" method="POST">
                     <div class="mb-3">
                         <label class="form-label">Digite o tipo de nota a ser adicionada:</label>
@@ -28,10 +28,16 @@
                         <input type="text" class="form-control" name = "quantidade">
                     </div>
 
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-dark">Acrescentar</button>
+                    <div class = "row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-dark">Acrescentar</button>
+                        </div>
                     </div>
                 </form>
+            </div>
+
+            <div class="text-center">
+                <a href="/home"><button class="btn btn-dark">Home</button></a>
             </div>
     </body>
     

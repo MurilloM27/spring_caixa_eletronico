@@ -65,6 +65,8 @@ public class TransacaoServico {
                     notasDez++;
                     caixa.sacarNotaDez(notasDez);
                 }
+            } else{
+                throw new ValorInvalidoException();
             }
         } else {
             throw new SaldoInsuficienteException();

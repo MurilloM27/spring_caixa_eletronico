@@ -43,11 +43,24 @@ public class CaixaController {
     }
     
     @PostMapping("/resultadoDeposito")
-    public String realizarDeposito(String agencia, String numeroConta, Double valor, Model model){
-        Conta conta = contaServico.findByAgenciaENumeroConta(agencia, numeroConta);
+    public String realizarDeposito(Double valor, Model model, Principal principal){
+        Conta conta = contaServico.findByUsuario(principal.getName());
         transacao.depositar(conta.getId(), valor);
         model.addAttribute("saldo", conta.getSaldo());
         return "resultadoDeposito";
     }
+
+    @GetMapping("/transferencia")
+    public String transferencia(){
+        return "transferencia";
+    }
+
+    @PostMapping("/resultadoTransfer")
+    public String realizarDeposito(String agencia, String numeroConta, Double valor, Model model){
+        Conta conta = contaServico.findByAgenciaENumeroConta(agencia, numeroConta);
+        transacao.depositar(conta.getId(), valor);
+        return "resultadoTransfer";
+    }
+
 
 }
